@@ -42,10 +42,29 @@ public class ParkingLot {
                 }
             }
         }
+        System.out.println("NO slot available for given type");
+        return null;
     }
 
-    public String unPark(String ticketId){
-        return "";
+    public void unPark(String ticketId){
+        try {
+            String[] extract = ticketId.split("_");
+            int flr_idx = Integer.parseInt(extract[1])-1;
+            int slot_idx = Integer.parseInt(extract[2])-1;
+
+            for(int i=0; i<slots.size();i++){
+                for(int j=0;j<slots.get(i).size(); j++){
+                    if(i==flr_idx && j==slot_idx) {
+                        Slot slot = slots.get(i).get(j);
+                        slot.setVehicle(null);
+                        slot.setTicketId(null);
+                        System.out.println("Unparked vehicle");    
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("TicketId not found. " + e.getMessage());
+        }
     }
 
     public String getNoOfOpenSlots(String type){
