@@ -67,8 +67,17 @@ public class ParkingLot {
         }
     }
 
-    public String getNoOfOpenSlots(String type){
-        return "";
+    public Integer getNoOfOpenSlots(String type){
+        int count = 0;
+        for (List<Slot> floor : slots) {
+            for (Slot slot : floor) {
+                if(slot.getVehicle() == null && slot.getType().equals(type)){
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
     public List<Slot> displayOpenSlots(String type){
