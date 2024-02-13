@@ -33,7 +33,7 @@ public class ParkingLot {
     public String parkVehicle(String type, String regNo, String color){
         Vehicle vehicle = new Vehicle(type, regNo, color);
         for(int i = 0; i < slots.size(); i++){            
-            for(int j = 0; i < slots.get(i).size(); i++){
+            for(int j = 0; j < slots.get(i).size(); j++){
                 Slot slot = slots.get(i).get(j);
                 if(slot.getType() == type && slot.getVehicle() == null){
                     slot.setVehicle(vehicle);
@@ -80,12 +80,24 @@ public class ParkingLot {
         return count;
     }
 
-    public List<Slot> displayOpenSlots(String type){
-        
+    public void displayOpenSlots(String type){
+        for(int i=0;i<slots.size();i++){
+            for(int j=0;j<slots.get(i).size();j++){
+                Slot slot=slots.get(i).get(j);
+                if(slot.getVehicle() == null && slot.getType().equals(type)) 
+                    System.out.println("Floor " + (i+1) + " slot " + (j+1));
+            }
+        }  
     }
 
-    public List<Slot> displayOccupiedSlots(String type){
-
+    public void displayOccupiedSlots(String type){
+        for(int i=0;i<slots.size();i++){
+            for(int j=0;j<slots.get(i).size();j++){
+                Slot slot=slots.get(i).get(j);
+                if(slot.getVehicle() != null && slot.getType().equals(type)) 
+                    System.out.println("Floor " + (i+1) + " slot " + (j+1));
+            }
+        }  
     }
 
     private String generateTicketId(int flr, int slno){
