@@ -9,10 +9,10 @@ public class Slot {
 
     }
 
-    public Slot(String type, Vehicle vehicle, String ticketId) {
+    public Slot(String type) {
         this.type = type;
-        this.vehicle = vehicle;
-        this.ticketId = ticketId;
+        this.vehicle = null;
+        this.ticketId = null;
     }
 
     public String getType() {
